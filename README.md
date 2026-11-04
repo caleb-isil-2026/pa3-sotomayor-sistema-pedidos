@@ -632,3 +632,99 @@ Para ejecutar toda la suite:
 ---
 
 **Uso académico:** curso *Desarrollo de Aplicaciones Empresariales Avanzado* · Continuidad del caso **Sistema de Pedidos** · Sesiones 7 y 9: **Spring MVC, Seguridad con Spring y Spring JDBC**.
+
+---
+
+## 15. PA3 — Módulo de consulta y supervisión de pedidos
+
+Evolución individual sobre la rama `feature/sistema-pedidos-spring-jdbc` (rama del estudiante: `feature/pa3-estudiante`). Integra Spring Framework (sesión 6), Spring MVC + Spring Security (sesión 7) y Spring JDBC (sesión 9).
+
+![Arquitectura PA3](docs/diagrama-arquitectura-pa3.png)
+
+### 15.1 Tecnologías
+
+Java 21 · Spring Boot 4.1 (Spring MVC, Spring Security, Spring Data JPA, Spring JDBC, RestClient) · JSP + JSTL · MySQL 8.x (ejecución) · H2 (solo pruebas) · JUnit 5 · Mockito · MockMvc · Maven.
+
+### 15.2 Requisitos y base de datos
+
+1. JDK 21 y Maven 3.9+.
+2. MySQL 8.x en `localhost:3306`.
+3. Ejecutar con un usuario administrador el script **`database/Script_BD_usuario_MySql.sql`**: crea la base `pedidosdb`, el usuario de laboratorio `spedidos_app` y la tabla `pedido`.
+
+   ```bash
+   mysql -u root -p < database/Script_BD_usuario_MySql.sql
+   ```
+4. Credenciales externalizadas por variables de entorno (no se agregan contraseñas reales al repositorio):
+
+   | Variable | Valor de laboratorio por defecto |
+   |---|---|
+   | `DB_URL` | `jdbc:mysql://localhost:3306/pedidosdb?serverTimezone=America/Lima` |
+   | `DB_USERNAME` | `spedidos_app` |
+   | `DB_PASSWORD` | *(valor de laboratorio del script; cambiarlo fuera del aula)* |
+
+   ```powershell
+   $env:DB_URL = "jdbc:mysql://localhost:3306/pedidosdb?serverTimezone=America/Lima"
+   $env:DB_USERNAME = "spedidos_app"
+   $env:DB_PASSWORD = "<clave-local>"
+   ```
+
+### 15.3 Orden de arranque
+
+1. MySQL (con el script ya ejecutado).
+2. `inventario-service` (Sesión 4) en WildFly → `http://localhost:8082/inventario-service/api/inventario`.
+3. Sistema de Pedidos: `mvn spring-boot:run` → `http://localhost:8081/sistema-pedidos/`.
+
+### 15.4 Usuarios y roles de laboratorio
+
+| Usuario | Rol | Reportes (GET) | Registrar pedido (POST /pedidos) |
+|---|---|---|---|
+| `operador` | `OPERADOR` | Sí | Sí (con token CSRF) |
+| `consulta` | `CONSULTA` | Sí | No (403) |
+| anónimo | — | Redirigido a `/login` | Redirigido a `/login` |
+
+Contraseñas: valores de laboratorio de la sección 6 (`PEDIDOS_OPERADOR_PASSWORD`, `PEDIDOS_CONSULTA_PASSWORD`).
+
+### 15.5 Cambios por capa
+
+| Capa | Archivo | Cambio PA3 |
+|---|---|---|
+| Repository (JDBC) | `PedidoReporteJdbcRepository` | `buscarPedidosPorClienteYTotalMinimo` (NamedParameterJdbcTemplate, `:cliente`, `:totalMinimo`, `PedidoRowMapper`, `ORDER BY id DESC`) y `listarClientesFrecuentes` (`GROUP BY cliente HAVING COUNT(*) >= :minPedidos`) |
+| Proyección | `ClienteFrecuenteProjection` | totalPedidos, totalUnidades, importeAcumulado, ticketPromedio |
+| Service | `PedidoReporteService/Impl` | Valida cliente no vacío, `totalMinimo >= 0`, `minPedidos >= 1` → `ParametroReporteInvalidoException` |
+| API JSON | `PedidoReporteController`, `ReporteApiExceptionHandler` | 2 endpoints nuevos; errores → 400 / 503 en JSON |
+| MVC/JSP | `PedidoReporteWebController`, `reportes-pedidos.jsp` | `GET /reportes/pedidos` con `Model` + ViewResolver |
+| Seguridad | `SecurityConfig` | GET `/reportes/**` y endpoints de reportes → OPERADOR, CONSULTA; POST `/pedidos` → OPERADOR; CSRF habilitado |
+
+### 15.6 Rutas nuevas y ejemplos
+
+| Método | Ruta (anteponer `/sistema-pedidos`) | Roles |
+|---|---|---|
+| GET | `/reportes/pedidos?cliente=Ana&totalMinimo=500&minPedidos=2` | OPERADOR, CONSULTA |
+| GET | `/api/v1/pedidos/busqueda-avanzada?cliente=Ana&totalMinimo=500` | OPERADOR, CONSULTA |
+| GET | `/api/v1/pedidos/clientes-frecuentes?minPedidos=2` | OPERADOR, CONSULTA |
+
+```json
+GET /api/v1/pedidos/clientes-frecuentes?minPedidos=2  → 200
+[{"cliente":"Ana Torres","totalPedidos":3,"totalUnidades":4,"importeAcumulado":5970.00,"ticketPromedio":1990.00},
+ {"cliente":"Carlos Perez","totalPedidos":2,"totalUnidades":4,"importeAcumulado":1210.00,"ticketPromedio":605.00}]
+
+GET /api/v1/pedidos/clientes-frecuentes?minPedidos=0  → 400
+{"status":400,"error":"Bad Request","message":"El número mínimo de pedidos debe ser mayor o igual a 1.","parametro":"minPedidos", ...}
+```
+
+### 15.7 Pruebas nuevas (PA3)
+
+`mvn test` → **40 pruebas, 0 fallos** (20 nuevas de PA3):
+
+| Clase | Tipo | Qué verifica |
+|---|---|---|
+| `PedidoReporteJdbcRepositoryPa3Test` (4) | Integración H2 | Filtro cliente + total y orden desc; SQL/comodines tratados como texto; GROUP BY/HAVING y agregados; umbral 3 |
+| `PedidoReporteServiceImplPa3Test` (5) | Unitaria Mockito | Rechazo de `minPedidos=0`, `totalMinimo<0`, cliente vacío sin tocar el repositorio; delegación y mapeo |
+| `PedidoReporteControllerPa3Test` (4) | MockMvc standalone | 400 JSON por parámetros inválidos / no numéricos; 200 con agregados |
+| `PedidoReporteWebSecurityPa3IntegrationTest` (7) | MockMvc + Security | CONSULTA ve la JSP (vista + Model); búsqueda en JSP; 400 en JSP; anónimo → `/login` (vista y API); rol sin permiso → 403; API filtrada |
+
+### 15.8 Limitaciones
+
+- Usuarios en memoria (`InMemoryUserDetailsManager`); sin JWT/OAuth2, según el alcance.
+- El reporte compara el cliente por coincidencia parcial sin distinguir mayúsculas; no normaliza tildes.
+- Los montos JSON se serializan como número (`5970` equivale a `5970.00`).
