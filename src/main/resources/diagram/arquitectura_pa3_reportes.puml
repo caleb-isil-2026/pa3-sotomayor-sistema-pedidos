@@ -1,60 +1,118 @@
 @startuml arquitectura_pa3_reportes
-' PA3 - Sistema de Pedidos: módulo de consulta y supervisión
-skinparam componentStyle rectangle
-skinparam defaultFontName Arial
+' ============================================================
+' Sistema de Pedidos - PA3: módulo de consulta y supervisión
+' Diagrama de componentes por capas (Spring Boot 4.1)
+' ============================================================
+!pragma layout smetana
+skinparam dpi 150
+skinparam linetype ortho
+skinparam nodesep 40
+skinparam ranksep 45
 skinparam shadowing false
-skinparam ArrowColor #333333
-skinparam rectangle {
-  BorderColor #555555
-  RoundCorner 10
+skinparam roundCorner 8
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 12
+skinparam ArrowColor #37474F
+skinparam ArrowFontSize 11
+skinparam ArrowFontColor #37474F
+skinparam titleFontSize 18
+skinparam titleFontStyle bold
+skinparam packageStyle rectangle
+skinparam package {
+  BorderColor #90A4AE
+  FontColor #263238
+  FontStyle bold
 }
-top to bottom direction
+skinparam component {
+  BorderColor #546E7A
+  FontColor #212121
+  StereotypeFontColor #546E7A
+  StereotypeFontSize 10
+  BackgroundColor<<Security>> #FFEBEE
+  BorderColor<<Security>> #C62828
+  BackgroundColor<<Spring MVC>> #ECEFF1
+  BackgroundColor<<Controller>> #E8F5E9
+  BorderColor<<Controller>> #2E7D32
+  BackgroundColor<<RestController>> #E8F5E9
+  BorderColor<<RestController>> #2E7D32
+  BackgroundColor<<View>> #F1F8E9
+  BackgroundColor<<Advice>> #FFF8E1
+  BorderColor<<Advice>> #F9A825
+  BackgroundColor<<Service>> #EDE7F6
+  BorderColor<<Service>> #5E35B1
+  BackgroundColor<<JPA>> #E3F2FD
+  BorderColor<<JPA>> #1565C0
+  BackgroundColor<<JDBC>> #E1F5FE
+  BorderColor<<JDBC>> #0277BD
+  BackgroundColor<<HTTP Client>> #FFF3E0
+  BorderColor<<HTTP Client>> #EF6C00
+}
+skinparam database {
+  BackgroundColor #E8F5E9
+  BorderColor #2E7D32
+}
+skinparam actor {
+  BorderColor #37474F
+  BackgroundColor #FFFFFF
+}
 
-actor "Usuario\n(OPERADOR / CONSULTA)" as usuario
-rectangle "Navegador / Cliente HTTP" as navegador #E8F0FE
+title Sistema de Pedidos · Arquitectura del módulo de reportes (PA3)
 
-rectangle "Sistema de Pedidos (Spring Boot 4.1, :8081)" {
-  rectangle "Spring Security\nSecurityFilterChain\nformLogin · CSRF · roles" as security #FCE8E6
-  rectangle "DispatcherServlet" as dispatcher #F1F3F4
+actor "Usuario\nOPERADOR / CONSULTA" as usuario
+component "Navegador / Cliente HTTP" as navegador
 
-  rectangle "Capa web" {
-    rectangle "PedidoController\n@Controller" as pedidoCtl #E6F4EA
-    rectangle "PedidoReporteWebController\n@Controller\nGET /reportes/pedidos" as webCtl #E6F4EA
-    rectangle "reportes-pedidos.jsp\n(ViewResolver)" as jsp #E6F4EA
-    rectangle "PedidoReporteController\n@RestController\n/busqueda-avanzada\n/clientes-frecuentes" as restCtl #E6F4EA
-    rectangle "ReporteApiExceptionHandler\n@RestControllerAdvice\n400 / 503 JSON" as advice #FEF7E0
+package "sistema-pedidos-springboot  (Spring Boot 4.1 · puerto 8081)" {
+
+  component "SecurityFilterChain\nformLogin · CSRF · reglas por rol" as security <<Security>>
+  component "DispatcherServlet" as dispatcher <<Spring MVC>>
+
+  package "Capa web" {
+    component "PedidoReporteWebController\nGET /reportes/pedidos" as webCtl <<Controller>>
+    component "reportes-pedidos.jsp\nViewResolver /WEB-INF/views" as jsp <<View>>
+    component "PedidoController\nGET · POST /pedidos" as pedidoCtl <<Controller>>
+    component "PedidoReporteController\n/api/v1/pedidos/busqueda-avanzada\n/api/v1/pedidos/clientes-frecuentes" as restCtl <<RestController>>
+    component "ReporteApiExceptionHandler\n400 / 503 en JSON" as advice <<Advice>>
   }
 
-  rectangle "Capa de servicio" {
-    rectangle "PedidoService / Impl\n@Service · @Transactional" as pedidoSvc #EDE7F6
-    rectangle "PedidoReporteService / Impl\n@Service\nvalida cliente, totalMinimo >= 0,\nminPedidos >= 1" as reporteSvc #EDE7F6
+  package "Capa de servicio" {
+    component "PedidoReporteService / Impl\nvalida cliente, totalMinimo ≥ 0, minPedidos ≥ 1" as reporteSvc <<Service>>
+    component "PedidoService / Impl\n@Transactional" as pedidoSvc <<Service>>
   }
 
-  rectangle "Capa de datos" {
-    rectangle "PedidoRepository\nSpring Data JPA" as jpaRepo #E8F0FE
-    rectangle "PedidoReporteJdbcRepository\nSpring JDBC\nNamedParameterJdbcTemplate\nPedidoRowMapper · ClienteFrecuenteProjection" as jdbcRepo #E8F0FE
-    rectangle "InventarioRestClient\nRestClient (HTTP/JSON)" as invClient #FEF7E0
+  package "Capa de acceso a datos" {
+    component "PedidoReporteJdbcRepository\nNamedParameterJdbcTemplate\nPedidoRowMapper · ClienteFrecuenteProjection" as jdbcRepo <<JDBC>>
+    component "PedidoRepository\nJpaRepository<Pedido, Long>" as jpaRepo <<JPA>>
+    component "InventarioRestClient\nRestClient" as invClient <<HTTP Client>>
   }
 }
 
-database "MySQL\npedidosdb.pedido" as mysql #E6F4EA
-rectangle "inventario-service\nJakarta EE / WildFly\n:8082 (externo)" as inventario #FFFFFF
+database "MySQL 8\npedidosdb · tabla pedido" as mysql
+component "inventario-service\nJakarta EE · WildFly · :8082" as inventario #FAFAFA
 
-usuario --> navegador
-navegador --> security : HTTP
-security --> dispatcher : petición autorizada
-dispatcher --> pedidoCtl
-dispatcher --> webCtl
-dispatcher --> restCtl
-webCtl --> jsp : Model
-restCtl ..> advice : excepciones
-webCtl --> reporteSvc
-restCtl --> reporteSvc
-pedidoCtl --> pedidoSvc
-pedidoSvc --> jpaRepo
-pedidoSvc --> invClient
-reporteSvc --> jdbcRepo
-jpaRepo --> mysql : JPA / Hibernate
-jdbcRepo --> mysql : SQL parametrizado
-invClient ..> inventario : HTTP/JSON\nreservar stock
+usuario -down-> navegador
+navegador -down-> security : (1) HTTP
+security -down-> dispatcher : (2) petición autorizada
+dispatcher -down-> webCtl : (3) vista
+dispatcher -down-> restCtl : (3) API JSON
+dispatcher -down-> pedidoCtl : registro
+webCtl -right-> jsp : Model
+restCtl .right.> advice : excepciones
+webCtl -down-> reporteSvc : (4)
+restCtl -down-> reporteSvc : (4)
+pedidoCtl -down-> pedidoSvc
+reporteSvc -down-> jdbcRepo : (5)
+pedidoSvc -down-> jpaRepo
+pedidoSvc -down-> invClient : reservar stock
+jdbcRepo -down-> mysql : (6) SQL con parámetros
+jpaRepo -down-> mysql : JPA / Hibernate
+invClient .down.> inventario : HTTP/JSON
+
+legend right
+  |= Flujo PA3 |= Descripción |
+  | (1)-(2) | Spring Security autentica y autoriza (CSRF activo) |
+  | (3) | DispatcherServlet enruta a la vista JSP o a la API JSON |
+  | (4) | Ambos controladores usan el mismo Service |
+  | (5)-(6) | Spring JDBC ejecuta SQL parametrizado en MySQL |
+  | punteado | integración externa o manejo de excepciones |
+endlegend
 @enduml
