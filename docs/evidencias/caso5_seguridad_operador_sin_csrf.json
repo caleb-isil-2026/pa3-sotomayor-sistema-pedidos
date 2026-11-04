@@ -1,0 +1,1 @@
+{"usuario":"operador (ROL OPERADOR)","registrarPedidoSinCsrf":{"request":"POST /sistema-pedidos/pedidos SIN token CSRF","status":403}}

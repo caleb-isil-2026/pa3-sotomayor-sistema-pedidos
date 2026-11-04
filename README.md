@@ -771,3 +771,15 @@ GET /api/v1/pedidos/clientes-frecuentes?minPedidos=0  → 400
 - Usuarios en memoria (`InMemoryUserDetailsManager`); sin JWT/OAuth2, según el alcance.
 - El reporte compara el cliente por coincidencia parcial sin distinguir mayúsculas; no normaliza tildes.
 - Los montos JSON se serializan como número (`5970` equivale a `5970.00`).
+
+### 15.9 Evidencias de los cinco casos
+
+Carpeta [`docs/evidencias`](docs/evidencias):
+
+| Caso | Capturas | Respuestas HTTP / datos |
+|---|---|---|
+| 1 y 2. Búsqueda avanzada y clientes frecuentes | `caso0_pedidos_registrados.png`, `caso1y2_jsp_busqueda_y_frecuentes.png` | `api_operador_casos1-3.json`, `mysql_verificacion_casos1y2.txt` |
+| 3. Parámetros inválidos | `caso3_jsp_parametros_invalidos.png` | `api_operador_casos1-3.json` (400) |
+| 4. inventario-service indisponible | `caso4a_inventario_caido_registro_503.png`, `caso4b_inventario_caido_reportes_ok.png` | `caso4_estados_http.json` (503 / 200) |
+| 5. Seguridad por roles y CSRF | `caso5a`…`caso5e_*.png` | `caso5_seguridad_consulta.json`, `caso5_seguridad_operador_sin_csrf.json` (302 / 200 / 403) |
+| Pruebas automatizadas | — | `mvn_test_resumen.txt`, `mvn_test_completo.log` (40 pruebas, 0 fallos) |

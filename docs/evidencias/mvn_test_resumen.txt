@@ -1,0 +1,14 @@
+﻿[INFO] Building sistema-pedidos-springboot 2.0.0-SNAPSHOT
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.307 s -- in com.isil.edu.pe.spedidos.controller.PedidoApiControllerTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.273 s -- in com.isil.edu.pe.spedidos.controller.PedidoReporteControllerIntegrationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 s -- in com.isil.edu.pe.spedidos.controller.PedidoReporteControllerPa3Test
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.143 s -- in com.isil.edu.pe.spedidos.controller.PedidoReporteWebSecurityPa3IntegrationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.692 s -- in com.isil.edu.pe.spedidos.controller.PedidoSecurityIntegrationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryPa3Test
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.isil.edu.pe.spedidos.service.impl.PedidoReporteServiceImplPa3Test
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.130 s -- in com.isil.edu.pe.spedidos.service.impl.PedidoServiceImplTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplicationTests
+[INFO] Tests run: 40, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS

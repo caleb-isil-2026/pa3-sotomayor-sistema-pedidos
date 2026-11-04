@@ -1,0 +1,196 @@
+﻿[INFO] Scanning for projects...
+[INFO] Loaded 24356 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] 
+[INFO] -------------< com.isil.edu.pe:sistema-pedidos-springboot >-------------
+[INFO] Building sistema-pedidos-springboot 2.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ sistema-pedidos-springboot ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ sistema-pedidos-springboot ---
+[INFO] Loaded 64 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ sistema-pedidos-springboot ---
+[INFO] Copying 1 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ sistema-pedidos-springboot ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ sistema-pedidos-springboot ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.isil.edu.pe.spedidos.controller.PedidoApiControllerTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Productora Zamar\.m2\repository\net\bytebuddy\byte-buddy-agent\1.18.11\byte-buddy-agent-1.18.11.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+19:29:45.125 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:29:45.126 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:29:45.130 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 1 ms
+19:29:45.235 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:29:45.235 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:29:45.238 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 3 ms
+19:29:45.274 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:29:45.274 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:29:45.274 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+19:29:45.280 [main] INFO org.springframework.mock.web.MockServletContext -- Initializing Spring TestDispatcherServlet ''
+19:29:45.280 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Initializing Servlet ''
+19:29:45.280 [main] INFO org.springframework.test.web.servlet.TestDispatcherServlet -- Completed initialization in 0 ms
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.307 s -- in com.isil.edu.pe.spedidos.controller.PedidoApiControllerTest
+[INFO] Running com.isil.edu.pe.spedidos.controller.PedidoReporteControllerIntegrationTest
+19:29:45.329 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.controller.PedidoReporteControllerIntegrationTest]: PedidoReporteControllerIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:29:45.421 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.controller.PedidoReporteControllerIntegrationTest
+19:29:45.451 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.controller.PedidoReporteControllerIntegrationTest]: PedidoReporteControllerIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:29:45.454 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.controller.PedidoReporteControllerIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-11-03T19:29:45.662-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] c.PedidoReporteControllerIntegrationTest : Starting PedidoReporteControllerIntegrationTest using Java 21.0.12.1 with PID 30664 (started by Productora Zamar in C:\Users\Productora Zamar\Downloads\Desarrollo de Aplicaciones\Examen1_PA3_Spring_Pedidos\repo-docente\ADVANCED-BUSINESS-APPLICATION-DEVELOPMENT\Sesión 5\sistema-pedidos-springboot)
+2026-11-03T19:29:45.667-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] c.PedidoReporteControllerIntegrationTest : The following 1 profile is active: "test"
+2026-11-03T19:29:46.064-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-03T19:29:46.101-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 1 JPA repository interface.
+2026-11-03T19:29:46.500-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-11-03T19:29:46.554-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-11-03T19:29:46.821-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-03T19:29:46.846-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-03T19:29:46.960-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:pedidosdb_test user=ADMIN
+2026-11-03T19:29:46.961-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-03T19:29:46.975-05:00  WARN 30664 --- [sistema-pedidos-springboot] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-11-03T19:29:46.988-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:pedidosdb_test]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: pedidosdb_test/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-03T19:29:47.420-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-03T19:29:47.445-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-03T19:29:47.518-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-03T19:29:47.991-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-11-03T19:29:48.424-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] c.PedidoReporteControllerIntegrationTest : Started PedidoReporteControllerIntegrationTest in 2.94 seconds (process running for 4.887)
+2026-11-03T19:29:48.458-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.458-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.458-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.495-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.495-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.495-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.541-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.541-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.541-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.549-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.549-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.549-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.273 s -- in com.isil.edu.pe.spedidos.controller.PedidoReporteControllerIntegrationTest
+[INFO] Running com.isil.edu.pe.spedidos.controller.PedidoReporteControllerPa3Test
+2026-11-03T19:29:48.641-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.641-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.641-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.662-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.662-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.662-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.695-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.695-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.695-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.699-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.699-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.699-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 s -- in com.isil.edu.pe.spedidos.controller.PedidoReporteControllerPa3Test
+[INFO] Running com.isil.edu.pe.spedidos.controller.PedidoReporteWebSecurityPa3IntegrationTest
+2026-11-03T19:29:48.708-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.controller.PedidoReporteWebSecurityPa3IntegrationTest]: PedidoReporteWebSecurityPa3IntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:48.708-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.controller.PedidoReporteWebSecurityPa3IntegrationTest
+2026-11-03T19:29:48.712-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.controller.PedidoReporteWebSecurityPa3IntegrationTest]: PedidoReporteWebSecurityPa3IntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:48.712-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.controller.PedidoReporteWebSecurityPa3IntegrationTest
+2026-11-03T19:29:48.716-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.716-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.716-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.737-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.737-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.741-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2026-11-03T19:29:48.784-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.784-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.784-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.807-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.807-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.807-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.820-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.820-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.820-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-03T19:29:48.831-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.832-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.834-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-11-03T19:29:48.839-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.839-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.840-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.143 s -- in com.isil.edu.pe.spedidos.controller.PedidoReporteWebSecurityPa3IntegrationTest
+[INFO] Running com.isil.edu.pe.spedidos.controller.PedidoSecurityIntegrationTest
+2026-11-03T19:29:48.849-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.controller.PedidoSecurityIntegrationTest]: PedidoSecurityIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:48.851-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.controller.PedidoSecurityIntegrationTest
+2026-11-03T19:29:48.852-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.controller.PedidoSecurityIntegrationTest]: PedidoSecurityIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:48.854-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.controller.PedidoSecurityIntegrationTest
+2026-11-03T19:29:48.854-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.854-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.858-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2026-11-03T19:29:48.861-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.861-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.863-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-11-03T19:29:48.870-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:48.870-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:48.875-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 5 ms
+2026-11-03T19:29:49.520-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-03T19:29:49.520-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-03T19:29:49.520-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.692 s -- in com.isil.edu.pe.spedidos.controller.PedidoSecurityIntegrationTest
+[INFO] Running com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryPa3Test
+2026-11-03T19:29:49.540-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryPa3Test]: PedidoReporteJdbcRepositoryPa3Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:49.553-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryPa3Test
+2026-11-03T19:29:49.554-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryPa3Test]: PedidoReporteJdbcRepositoryPa3Test does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:49.555-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryPa3Test
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.061 s -- in com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryPa3Test
+[INFO] Running com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryTest
+2026-11-03T19:29:49.600-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryTest]: PedidoReporteJdbcRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:49.608-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryTest
+2026-11-03T19:29:49.608-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryTest]: PedidoReporteJdbcRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:49.608-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.isil.edu.pe.spedidos.repository.PedidoReporteJdbcRepositoryTest
+[INFO] Running com.isil.edu.pe.spedidos.service.impl.PedidoReporteServiceImplPa3Test
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.isil.edu.pe.spedidos.service.impl.PedidoReporteServiceImplPa3Test
+[INFO] Running com.isil.edu.pe.spedidos.service.impl.PedidoServiceImplTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.130 s -- in com.isil.edu.pe.spedidos.service.impl.PedidoServiceImplTest
+[INFO] Running com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplicationTests
+2026-11-03T19:29:49.767-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplicationTests]: SistemaPedidosSpringbootApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:49.775-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplicationTests
+2026-11-03T19:29:49.775-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplicationTests]: SistemaPedidosSpringbootApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-03T19:29:49.775-05:00  INFO 30664 --- [sistema-pedidos-springboot] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplication for test class com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplicationTests
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.isil.edu.pe.spedidos.SistemaPedidosSpringbootApplicationTests
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 40, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  8.520 s
+[INFO] Finished at: 2026-11-03T19:29:49-05:00
+[INFO] ------------------------------------------------------------------------
