@@ -22,8 +22,18 @@ public class SecurityConfig {
     return httpSecurity.authorizeHttpRequests(auth -> auth
             .requestMatchers("/assets/**").permitAll()
             .requestMatchers("/h2-console/**").denyAll()
+            // Registro de pedidos: exclusivo de OPERADOR (CSRF sigue habilitado).
             .requestMatchers(HttpMethod.POST, "/pedidos")
               .hasAnyRole("OPERADOR")
+            // PA3: vista JSP del módulo de consulta y supervisión.
+            .requestMatchers(HttpMethod.GET, "/reportes/**")
+              .hasAnyRole("OPERADOR", "CONSULTA")
+            // PA3: endpoints JSON de reportes (declarados explícitamente).
+            .requestMatchers(HttpMethod.GET,
+                "/api/v1/pedidos/busqueda-avanzada",
+                "/api/v1/pedidos/clientes-frecuentes",
+                "/api/v1/pedidos/estadisticas/**")
+              .hasAnyRole("OPERADOR", "CONSULTA")
             .requestMatchers(HttpMethod.GET, "/api/v1/pedidos", "/api/v1/pedidos/**")
               .hasAnyRole("OPERADOR", "CONSULTA")
             .requestMatchers(HttpMethod.GET, "/pedidos")
