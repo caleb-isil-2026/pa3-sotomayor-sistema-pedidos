@@ -1,3 +1,44 @@
+# Sistema de Pedidos · PA3: Módulo de consulta y supervisión de pedidos
+
+**Estudiante:** Caleb Isaac Sotomayor Castillo · **Curso:** Desarrollo de Aplicaciones Empresariales Avanzado (NRC 4622) · ISIL · 2026-20
+**Docente:** Carlos Nole · **Proyecto base:** [carnol1989/isil-2026-ii](https://github.com/carnol1989/isil-2026-ii), rama `feature/sistema-pedidos-spring-jdbc`
+
+Evolución individual del Sistema de Pedidos con un módulo de reportes protegido por Spring Security, construido con Spring MVC (JSP + JSON) y dos consultas nuevas con Spring JDBC y SQL parametrizado.
+
+![Diagrama de componentes PA3](docs/diagrama-arquitectura-pa3.png)
+
+## Qué se implementó
+
+| Capa | Archivo | Cambio |
+|---|---|---|
+| Spring JDBC | `repository/PedidoReporteJdbcRepository.java` | `buscarPedidosPorClienteYTotalMinimo` (NamedParameterJdbcTemplate + PedidoRowMapper) y `listarClientesFrecuentes` (GROUP BY / HAVING) |
+| Proyección | `repository/projection/ClienteFrecuenteProjection.java` | totalPedidos, totalUnidades, importeAcumulado, ticketPromedio |
+| Service | `service/impl/PedidoReporteServiceImpl.java` | Valida cliente no vacío, `totalMinimo >= 0`, `minPedidos >= 1` |
+| API JSON | `controller/PedidoReporteController.java`, `ReporteApiExceptionHandler.java` | `GET /api/v1/pedidos/busqueda-avanzada` y `GET /api/v1/pedidos/clientes-frecuentes`, errores 400/503 en JSON |
+| MVC / JSP | `controller/PedidoReporteWebController.java`, `WEB-INF/views/reportes-pedidos.jsp` | `GET /reportes/pedidos` con Model y ViewResolver |
+| Seguridad | `config/SecurityConfig.java` | GET de reportes para OPERADOR y CONSULTA; `POST /pedidos` solo OPERADOR; CSRF activo |
+| Base de datos | `database/Script_BD_usuario_MySql.sql` | Base `pedidosdb`, usuario `spedidos_app` y tabla `pedido` |
+| Pruebas | `src/test/java/...Pa3*Test.java` | 20 pruebas nuevas (JUnit 5, Mockito, MockMvc, H2) |
+
+## Ejecución rápida
+
+```bash
+mysql -u root -p < database/Script_BD_usuario_MySql.sql
+mvn test
+mvn spring-boot:run
+```
+
+Abrir <http://localhost:8081/sistema-pedidos/reportes/pedidos> (requiere `inventario-service` en `:8082` solo para registrar pedidos).
+
+| Usuario | Rol | Reportes | Registrar pedido |
+|---|---|---|---|
+| `operador` | OPERADOR | Sí | Sí |
+| `consulta` | CONSULTA | Sí | No (403) |
+
+Resultado de `mvn test`: **40 pruebas, 0 fallos**. Detalle completo en la [sección 15](#15-pa3--módulo-de-consulta-y-supervisión-de-pedidos) y diagrama fuente en `src/main/resources/diagram/arquitectura_pa3_reportes.puml`.
+
+---
+
 # Sistema de Pedidos — Spring Boot
 
 > Proyecto académico evolutivo · **Desarrollo de Aplicaciones Empresariales Avanzado** · ISIL  
