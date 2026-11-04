@@ -2,10 +2,12 @@ package com.isil.edu.pe.spedidos.controller;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+import com.isil.edu.pe.spedidos.controller.dto.ClienteFrecuenteDto;
 import com.isil.edu.pe.spedidos.controller.dto.PedidoResponse;
 import com.isil.edu.pe.spedidos.controller.dto.ProductoVendidoDto;
 import com.isil.edu.pe.spedidos.controller.dto.ResumenPedidosDto;
 import com.isil.edu.pe.spedidos.service.PedidoReporteService;
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.Link;
@@ -72,6 +74,44 @@ public class PedidoReporteController {
         linkPedidos().withRel("pedidos")
     );
     return ResponseEntity.ok(coleccion);
+  }
+
+  /**
+   * PA3 - Búsqueda avanzada.
+   *
+   * <pre>GET /api/v1/pedidos/busqueda-avanzada?cliente={valor}&amp;totalMinimo={monto}</pre>
+   *
+   * <p>El controlador solo traduce HTTP y delega al Service; la validación
+   * (cliente no vacío, totalMinimo &gt;= 0) y el SQL no se duplican aquí.
+   * Los errores se convierten en HTTP 400 mediante
+   * {@link ReporteApiExceptionHandler}.</p>
+   */
+  @GetMapping(value = "/busqueda-avanzada", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<List<PedidoResponse>> buscarPedidosPorClienteYTotalMinimo(
+      @RequestParam String cliente,
+      @RequestParam BigDecimal totalMinimo) {
+    List<PedidoResponse> pedidos = reporteService
+        .buscarPedidosPorClienteYTotalMinimo(cliente, totalMinimo)
+        .stream()
+        .map(PedidoResponse::from)
+        .toList();
+    return ResponseEntity.ok(pedidos);
+  }
+
+  /**
+   * PA3 - Clientes frecuentes.
+   *
+   * <pre>GET /api/v1/pedidos/clientes-frecuentes?minPedidos={n}</pre>
+   */
+  @GetMapping(value = "/clientes-frecuentes", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<List<ClienteFrecuenteDto>> listarClientesFrecuentes(
+      @RequestParam Integer minPedidos) {
+    List<ClienteFrecuenteDto> clientes = reporteService
+        .listarClientesFrecuentes(minPedidos)
+        .stream()
+        .map(ClienteFrecuenteDto::from)
+        .toList();
+    return ResponseEntity.ok(clientes);
   }
 
   private Link linkPedidos() {
