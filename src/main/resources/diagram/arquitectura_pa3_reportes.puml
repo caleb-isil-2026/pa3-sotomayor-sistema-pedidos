@@ -1,0 +1,60 @@
+@startuml arquitectura_pa3_reportes
+' PA3 - Sistema de Pedidos: módulo de consulta y supervisión
+skinparam componentStyle rectangle
+skinparam defaultFontName Arial
+skinparam shadowing false
+skinparam ArrowColor #333333
+skinparam rectangle {
+  BorderColor #555555
+  RoundCorner 10
+}
+top to bottom direction
+
+actor "Usuario\n(OPERADOR / CONSULTA)" as usuario
+rectangle "Navegador / Cliente HTTP" as navegador #E8F0FE
+
+rectangle "Sistema de Pedidos (Spring Boot 4.1, :8081)" {
+  rectangle "Spring Security\nSecurityFilterChain\nformLogin · CSRF · roles" as security #FCE8E6
+  rectangle "DispatcherServlet" as dispatcher #F1F3F4
+
+  rectangle "Capa web" {
+    rectangle "PedidoController\n@Controller" as pedidoCtl #E6F4EA
+    rectangle "PedidoReporteWebController\n@Controller\nGET /reportes/pedidos" as webCtl #E6F4EA
+    rectangle "reportes-pedidos.jsp\n(ViewResolver)" as jsp #E6F4EA
+    rectangle "PedidoReporteController\n@RestController\n/busqueda-avanzada\n/clientes-frecuentes" as restCtl #E6F4EA
+    rectangle "ReporteApiExceptionHandler\n@RestControllerAdvice\n400 / 503 JSON" as advice #FEF7E0
+  }
+
+  rectangle "Capa de servicio" {
+    rectangle "PedidoService / Impl\n@Service · @Transactional" as pedidoSvc #EDE7F6
+    rectangle "PedidoReporteService / Impl\n@Service\nvalida cliente, totalMinimo >= 0,\nminPedidos >= 1" as reporteSvc #EDE7F6
+  }
+
+  rectangle "Capa de datos" {
+    rectangle "PedidoRepository\nSpring Data JPA" as jpaRepo #E8F0FE
+    rectangle "PedidoReporteJdbcRepository\nSpring JDBC\nNamedParameterJdbcTemplate\nPedidoRowMapper · ClienteFrecuenteProjection" as jdbcRepo #E8F0FE
+    rectangle "InventarioRestClient\nRestClient (HTTP/JSON)" as invClient #FEF7E0
+  }
+}
+
+database "MySQL\npedidosdb.pedido" as mysql #E6F4EA
+rectangle "inventario-service\nJakarta EE / WildFly\n:8082 (externo)" as inventario #FFFFFF
+
+usuario --> navegador
+navegador --> security : HTTP
+security --> dispatcher : petición autorizada
+dispatcher --> pedidoCtl
+dispatcher --> webCtl
+dispatcher --> restCtl
+webCtl --> jsp : Model
+restCtl ..> advice : excepciones
+webCtl --> reporteSvc
+restCtl --> reporteSvc
+pedidoCtl --> pedidoSvc
+pedidoSvc --> jpaRepo
+pedidoSvc --> invClient
+reporteSvc --> jdbcRepo
+jpaRepo --> mysql : JPA / Hibernate
+jdbcRepo --> mysql : SQL parametrizado
+invClient ..> inventario : HTTP/JSON\nreservar stock
+@enduml

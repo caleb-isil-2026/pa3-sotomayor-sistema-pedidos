@@ -641,6 +641,8 @@ Evolución individual sobre la rama `feature/sistema-pedidos-spring-jdbc` (rama 
 
 ![Arquitectura PA3](docs/diagrama-arquitectura-pa3.png)
 
+El diagrama está escrito en PlantUML: `src/main/resources/diagram/arquitectura_pa3_reportes.puml`. La imagen `docs/diagrama-arquitectura-pa3.png` se generó con el servidor oficial de PlantUML.
+
 ### 15.1 Tecnologías
 
 Java 21 · Spring Boot 4.1 (Spring MVC, Spring Security, Spring Data JPA, Spring JDBC, RestClient) · JSP + JSTL · MySQL 8.x (ejecución) · H2 (solo pruebas) · JUnit 5 · Mockito · MockMvc · Maven.
